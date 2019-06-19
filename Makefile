@@ -139,9 +139,13 @@ generate:
 
 BAZEL_IMAGE_ENV := APP_VERSION=$(APP_VERSION) DOCKER_REPO=$(DOCKER_REPO) DOCKER_TAG=$(APP_VERSION)
 images:
-	bazel run //hack/release -- \
+	bazel run \
+                --incompatible_string_join_requires_strings=false \
+                --incompatible_require_ctx_in_configure_features=false \
+                //hack/release -- \
 		--repo-root "$$(pwd)" \
 		--images \
+		--images.export=true \
 		--images.goarch="amd64" \
 		--app-version="$(APP_VERSION)" \
 		--docker-repo="$(DOCKER_REPO)"

@@ -314,6 +314,9 @@ type ACMEChallengeSolverDNS01 struct {
 	RFC2136 *ACMEIssuerDNS01ProviderRFC2136 `json:"rfc2136,omitempty"`
 
 	// +optional
+	Godaddy *ACMEIssuerDNS01ProviderGodaddy `json:"godaddy,omitempty"`
+
+	// +optional
 	Webhook *ACMEIssuerDNS01ProviderWebhook `json:"webhook,omitempty"`
 }
 
@@ -372,6 +375,9 @@ type ACMEIssuerDNS01Provider struct {
 	RFC2136 *ACMEIssuerDNS01ProviderRFC2136 `json:"rfc2136,omitempty"`
 
 	// +optional
+	Godaddy *ACMEIssuerDNS01ProviderGodaddy `json:"godaddy,omitempty"`
+
+	// +optional
 	Webhook *ACMEIssuerDNS01ProviderWebhook `json:"webhook,omitempty"`
 }
 
@@ -422,6 +428,13 @@ type ACMEIssuerDNS01ProviderCloudflare struct {
 // configuration for DigitalOcean Domains
 type ACMEIssuerDNS01ProviderDigitalOcean struct {
 	Token SecretKeySelector `json:"tokenSecretRef"`
+}
+
+// ACMEIssuerDNS01ProviderGodaddy is a structure containing the DNS
+// configuration for Godaddy Domains
+type ACMEIssuerDNS01ProviderGodaddy struct {
+	APIKey         string            `json:"apiKey"`
+	APISecretStore SecretKeySelector `json:"apiSecretStoreSecretRef"`
 }
 
 // ACMEIssuerDNS01ProviderRoute53 is a structure containing the Route 53
